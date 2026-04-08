@@ -3,33 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Inventaris Laboratorium</title>
+    <title>Sistem Inventaris Laboratorium - Teknik Elektro</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .hero-section { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 60px 0; }
+        .card { border: none; transition: transform 0.3s; border-radius: 12px; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .btn-primary { background-color: #1e3a8a; border: none; }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Inventory Management System</h1>
-        <p>Daftar Inventaris Laboratorium Teknik Elektro</p>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">LAB-INV</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Inventory Management System</h1>
+            <p class="lead">Sistem Monitoring dan Manajemen Data Inventaris Laboratorium Teknik Elektro</p>
+        </div>
     </header>
 
-    <main class="container">
-        <section class="lab-grid">
-            <div class="card">
-                <h3>Lab 1</h3>
-                <p>Status: 120 Item Tersedia</p>
-                <a href="labs/labs_1.html" class="btn">Lihat Data</a>
+    <main class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-cpu" style="font-size: 2rem; color: #1e3a8a;"></i>
+                        </div>
+                        <h3 class="card-title h5">Laboratorium 1</h3>
+                        <p class="card-text text-muted">Laboratorium Sistem Tertanam & Elektronika</p>
+                        <div class="badge bg-success mb-3">120 Item Tersedia</div>
+                        <br>
+                        <a href="labs/labs_1.html" class="btn btn-primary w-100">Lihat Inventaris</a>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3>Lab 2</h3>
-                <p>Status: 85 Item Tersedia</p>
-                <a href="labs/labs_2.html" class="btn">Lihat Data</a>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-lightning-charge" style="font-size: 2rem; color: #1e3a8a;"></i>
+                        </div>
+                        <h3 class="card-title h5">Laboratorium 2</h3>
+                        <p class="card-text text-muted">Laboratorium Tenaga Listrik & Mesin</p>
+                        <div class="badge bg-success mb-3">85 Item Tersedia</div>
+                        <br>
+                        <a href="labs/labs_2.html" class="btn btn-primary w-100">Lihat Inventaris</a>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3>Lab 3</h3>
-                <p>Status: 85 Item Tersedia</p>
-                <a href="labs/labs_3.html" class="btn">Lihat Data</a>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-robot" style="font-size: 2rem; color: #1e3a8a;"></i>
+                        </div>
+                        <h3 class="card-title h5">Laboratorium 3</h3>
+                        <p class="card-text text-muted">Laboratorium Kendali & Robotika</p>
+                        <div class="badge bg-success mb-3">85 Item Tersedia</div>
+                        <br>
+                        <a href="labs/labs_3.html" class="btn btn-primary w-100">Lihat Inventaris</a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
+
+    <footer class="text-center py-4 text-muted border-top">
+        <p>&copy; 2026 Jurusan Teknik Elektro - Inventaris System</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>
 </html>
