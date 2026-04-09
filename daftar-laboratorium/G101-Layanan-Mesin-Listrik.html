@@ -58,54 +58,15 @@
                         <thead class="table-dark">
                             <tr>
                                 <th width="5%">No</th>
-                                <th width="15%">Kode Barang</th>
-                                <th width="25%">Nama Alat</th>
-                                <th width="30%">Spesifikasi / Merk</th>
-                                <th width="10%">Jumlah</th>
-                                <th width="15%">Kondisi</th>
+                                <th width="15%">No Seri</th>
+                                <th width="20%">Nama Alat</th>
+                                <th width="25%">Spesifikasi & Merk</th>
+                                <th width="10%">Fungsi</th>
+                                <th width="10%">Kondisi</th>
+                                <th width="15%">Foto</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>G101-MTR-01</td>
-                                <td>Motor Induksi 3 Fasa</td>
-                                <td>Siemens 1.5 kW, 380V, 50Hz</td>
-                                <td>4 Unit</td>
-                                <td><span class="badge-baik">Baik</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>G101-TRA-02</td>
-                                <td>Transformator Step Down</td>
-                                <td>Trafindo 3 Fasa, 380V/220V</td>
-                                <td>2 Unit</td>
-                                <td><span class="badge-baik">Baik</span></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>G101-MUL-01</td>
-                                <td>Multimeter Digital</td>
-                                <td>Fluke 115 True RMS</td>
-                                <td>10 Pcs</td>
-                                <td><span class="badge-perbaikan">Perbaikan (2 Pcs)</span></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>G101-GEN-01</td>
-                                <td>Generator Sinkron</td>
-                                <td>Leroy-Somer 2 kW, 220V</td>
-                                <td>1 Unit</td>
-                                <td><span class="badge-rusak">Rusak</span></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>G101-KBL-01</td>
-                                <td>Kabel Jumper Banana to Banana</td>
-                                <td>Panjang 1 Meter, Warna Merah/Hitam</td>
-                                <td>50 Pcs</td>
-                                <td><span class="badge-baik">Baik</span></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -125,6 +86,55 @@
     <script>
         $(document).ready(function() {
             $('#tabelInventaris').DataTable({
+                "ajax": {
+                    "url": "../data/g101-data.json", 
+                    "dataSrc": "" 
+                },
+                "columns": [
+                    { 
+                        // 1. Membuat nomor urut otomatis (karena di JSON tidak ada kolom "No")
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+                    { "data": "No Seri" }, // 2. Sesuai JSON
+                    { "data": "Nama Alat" }, // 3. Sesuai JSON
+                    { 
+                        // 4. Menggabungkan Merk dan Spesifikasi agar tabel tidak terlalu lebar
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return "<strong>" + row["Merk"] + "</strong><br><small>" + row["Spesifikasi"] + "</small>";
+                        }
+                    },
+                    { "data": "Fungsi" }, // 5. Sesuai JSON
+                    { 
+                        // 6. Memberi warna pada Kondisi
+                        "data": "Kondisi",
+                        "render": function(data, type, row) {
+                            // Trim() digunakan untuk menghilangkan spasi berlebih dari excel
+                            var kondisi = data ? data.trim() : ""; 
+                            
+                            if (kondisi === "Baik" || kondisi === "Bagus") {
+                                return '<span class="badge-baik">Bagus</span>';
+                            } else if (kondisi === "Rusak") {
+                                return '<span class="badge-rusak">Rusak</span>';
+                            } else {
+                                return '<span class="badge-perbaikan">' + kondisi + '</span>';
+                            }
+                        }
+                    },
+                    { 
+                        // 7. Mengubah link menjadi tombol foto
+                        "data": "Foto Alat",
+                        "render": function(data, type, row) {
+                            if (data && data.trim() !== "") {
+                                return '<a href="' + data + '" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-image"></i> Cek Foto</a>';
+                            }
+                            return '<span class="text-muted">-</span>';
+                        }
+                    }
+                ],
                 "language": {
                     "search": "Cari Alat:",
                     "lengthMenu": "Tampilkan _MENU_ alat per halaman",
@@ -142,6 +152,5 @@
             });
         });
     </script>
-
 </body>
 </html>
